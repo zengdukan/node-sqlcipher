@@ -42,6 +42,7 @@
           ['target_arch == "ia32"', {
             'variables': {
               'openssl_root%': 'OpenSSL-Win32',
+              'icu_root%': 'icu_x86-windows',
             }
           }, 'target_arch == "arm64"', {
             'variables': {
@@ -50,6 +51,7 @@
           }, {
             'variables': {
               'openssl_root%': 'OpenSSL-Win64',
+              'icu_root%': 'icu_x64-windows',
             }
           }]
         ],
@@ -59,10 +61,13 @@
             '-llibssl.lib',
             # The two libs below are needed for the Electron build to succeed
             '-lws2_32.lib',
-            '-lcrypt32.lib'
+            '-lcrypt32.lib',
+            '-licuuc.lib',
+            '-licuin.lib',
           ],
           'library_dirs': [
-            '<(module_root_dir)/deps/<(openssl_root)'
+            '<(module_root_dir)/deps/<(openssl_root)',
+            '<(module_root_dir)/deps/<(icu_root)',
           ]
         }
       },
@@ -92,7 +97,9 @@
         ["OS == \"win\"", {
           'include_dirs': [
             './sqlcipher-amalgamation/',
-            './openssl-include/'
+            './openssl-include/',
+            './fts/',
+            './icu_include/',
           ]
         },
         "OS == \"mac\"", {
@@ -124,7 +131,8 @@
           'SQLITE_HAS_CODEC',
           'SQLITE_TEMP_STORE=2',
           'SQLITE_SECURE_DELETE',
-          'SQLITE_ENABLE_DBSTAT_VTAB=1'
+          'SQLITE_ENABLE_DBSTAT_VTAB=1',
+          'ENABLE_MMICU',
         ],
       },
       'cflags_cc': [
@@ -141,7 +149,8 @@
         'SQLITE_HAS_CODEC',
         'SQLITE_TEMP_STORE=2',
         'SQLITE_SECURE_DELETE',
-        'SQLITE_ENABLE_DBSTAT_VTAB=1'
+        'SQLITE_ENABLE_DBSTAT_VTAB=1',
+        'ENABLE_MMICU',
       ]
     }
   ]

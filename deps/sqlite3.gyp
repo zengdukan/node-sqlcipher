@@ -133,6 +133,7 @@
           'SQLITE_SECURE_DELETE',
           'SQLITE_ENABLE_DBSTAT_VTAB=1',
           'ENABLE_MMICU',
+          'SQLITE_ENABLE_FTS3_PARENTHESIS',
         ],
       },
       'cflags_cc': [
@@ -151,6 +152,7 @@
         'SQLITE_SECURE_DELETE',
         'SQLITE_ENABLE_DBSTAT_VTAB=1',
         'ENABLE_MMICU',
+        'SQLITE_ENABLE_FTS3_PARENTHESIS',
       ]
     }
   ]

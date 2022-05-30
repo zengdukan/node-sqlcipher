@@ -67,7 +67,7 @@
           ],
           'library_dirs': [
             '<(module_root_dir)/deps/<(openssl_root)',
-            '<(module_root_dir)/deps/<(icu_root)',
+            '<(module_root_dir)/deps/<(icu_root)/lib/',
           ]
         }
       },
@@ -115,7 +115,11 @@
         }]
       ],
       'sources': [
-        './sqlcipher-amalgamation/sqlite3.c'
+        './sqlcipher-amalgamation/sqlite3.c',
+        './fts/mm_cipher.c',
+        './fts/mm_sqliteext.c',
+        './fts/mm_tokenizer.c',
+        './fts/mm_utils.c'
       ],
       'direct_dependent_settings': {
         'include_dirs': [

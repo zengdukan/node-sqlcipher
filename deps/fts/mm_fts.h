@@ -29,6 +29,9 @@ SQLITE_EXTENSION_INIT3
 extern "C" {
 #endif
 
+#ifdef _WIN32
+__declspec(dllexport)
+#endif
 int sqlite3_mmftsext_init(sqlite3 *db, char **pzErrMsg, const sqlite3_api_routines *pApi);
 
 int sqlite3_register_mm_tokenizer(sqlite3 *db);
